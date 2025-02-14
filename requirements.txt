@@ -1,0 +1,7 @@
+colorama
+requests
+bs4
+psutil
+fake_useragent
+instaloader
+googlesearch
