@@ -89,7 +89,6 @@ def main():
         print("Error: 'main.py' not found in the 'src' directory.")
         sys.exit(1)
 
-    # Build command to execute main.py using the current Python interpreter
     # Additional command-line arguments are passed along to main.py
     command = [sys.executable, 'main.py'] + sys.argv[1:]
     print(f"Executing main.py with command: {' '.join(command)}")
