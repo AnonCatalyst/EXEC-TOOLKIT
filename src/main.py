@@ -104,13 +104,20 @@ def update_file(file_path):
         print(SECONDARY + f"{file_path} not updated.")
 
 def get_user_inputs(ask_for_num_results=True, ask_for_files=False):
+    # Ensure the config folder exists
+    os.makedirs("config", exist_ok=True)
+
     query = input(ACCENT1 + "Enter the search query: ").strip()
     with open("config/query.txt", "w") as f:
         f.write(query)
     
     num_results = None
     if ask_for_num_results:
-        num_results = input(ACCENT1 + "Enter number of results (default: 10): ").strip() or "10"
+        # Prompt for number of results with a default value.
+        num_results = input(ACCENT1 + "Enter number of results (default: 10): ").strip() or "100"
+        # Save the num_results value to num_results.txt
+        with open("config/num_results.txt", "w") as f:
+            f.write(num_results)
     
     country_file = language_file = date_range_file = None
     if ask_for_files:
@@ -122,6 +129,7 @@ def get_user_inputs(ask_for_num_results=True, ask_for_files=False):
         update_file(date_range_file)
     
     return query, num_results, country_file, language_file, date_range_file
+
 
 def main():
     signal.signal(signal.SIGINT, clean_exit)  # Handle CTRL+C
