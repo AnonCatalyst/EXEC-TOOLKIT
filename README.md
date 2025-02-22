@@ -13,7 +13,7 @@
 - ``pip install -r requirements.txt --break-system-packages && cd RLA-EXEC``
 - ``python3 exec.py -h``
 
->> **RLA EXEC ARG VERSION DISPLAY**
+### **RLA EXEC ARG VERSION DISPLAY**
  
 ```
 ██████╗░██╗░░░░░░█████╗░  ███████╗██╗░░██╗███████╗░█████╗░
