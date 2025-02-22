@@ -7,11 +7,11 @@
 **INPUT MENU CLIENT**
 
 ## COMMING-NEXT: 
-- **1 AUTO DEFACE/VULNSCANER**
-- **1 SQLI VULN SCANNER**
-- **2 XSS VULN SCANNERS**
-- **GUI OPTIONS** > v1.4
-- **WEB UI** > v1.5
+- **1 AUTO DEFACE/VULNSCANER** > v1.4
+- **1 SQLI VULN SCANNER** > v1.5
+- **2 XSS VULN SCANNERS** > v1.6
+- **GUI OPTIONS** > v1.7
+- **WEB UI** > v1.8
 
 ![RLA EXEC Multi Tool SCREENSHOT](screenshot/Screenshot_2025-02-17_13-48-27.png)
 
