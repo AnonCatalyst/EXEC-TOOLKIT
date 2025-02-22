@@ -1,78 +1,97 @@
 
-### RLA-EXEC Multi Tool v1.1
+### RLA-EXEC Multi Tool v1.2
 > REPLACEMENT FOR OMINIS-OSINT ...
 **MAKE YOUR OSINT LIFE EASIER - THE FORGER IS FORMING A BETTER OMINIS-OSINT, THROUGH UPDATES THIS TOOL WILL HAVE EVERYTHING OMINIS-OSINT HAS AND MORE!**
 
-## UP-COMMING UPDATE: v1.2
+## IN-DEVELOPMENT UPDATE: v1.2
 **ENTIRELY REBUILT, INSTEAD OF A MULTI TOOL ITS A TOOLKIT NOW WITH ARG CLIENT, INPUT MENU CLIENT, WEB UI, and GUI OPTIONS**
-
-
-
-# BUG-FIXXED:
-- `num_results.txt wasnt updating`
 
 ![RLA EXEC Multi Tool SCREENSHOT](screenshot/Screenshot_2025-02-14_15-49-16.png)
 
-## Overview:
-
-__RLA EXEC simplifies the execution of multiple OSINT scripts by providing:__
-- **A menu-driven interface** with color-coded options for easy navigation.
-- **An animated startup banner** that adapts to your operating system, making the tool engaging and professional.
-- **Support for multiple OSINT modules**, including web search, deep web search, domain query enrichment, and username search.
-- **Complete execution mode** to run all scripts sequentially with a single command.
-- **Automated output capture** where results can be stored in a designated folder for later review.
-- **Interactive file configuration** to update search parameters and other settings without manual file editing.
-
-
->> **FEATURES:**
-### Interactive Command-Line Interface
-- **User-Friendly Menu:**  
-  Navigate through the options with a color-coded, easy-to-read menu.
-- **Animated Banner:**  
-  Enjoy an animated startup display that sets the tone for a professional tool.
-
-### Modular OSINT Scripts
-- **Web Search (`search.py`):**  
-  Launch standard web searches with customizable parameters.
-- **Deep Web Search (`backrooms.py`):**  
-  Explore the deep web with optional proxy support.
-- **Domain Query Enrichment (`domainbox.py`):**  
-  Retrieve detailed metadata such as page titles, descriptions, HTTP headers, IP addresses, ASN, and organizational information.
-- **Username Search (`userdash.py`):**  
-  Search for username-related information across various platforms.
-
-### Complete Execution Mode
-- **Run All Scripts:**  
-  Execute all available scripts in sequence with one command, while interactive prompts help update configurations.
-- **Output Capturing:**  
-  By setting the output file flag to `True`, the tool automatically saves the results in a `RESULTS` folder.
-
-
-### Dynamic Configuration and Updates
-- **Interactive File Updates:**  
-  Update files like `query.txt`, `country.txt`, `language.txt`, and `date_range.txt` via guided prompts.
-- **Flexible Input Handling:**  
-  The tool supports default values and interactive queries, making it easy for beginners to use without prior knowledge.
-
-### Robust Error Handling and Graceful Shutdown
-- **Error Reporting:**  
-  Detailed error messages help you troubleshoot issues with script execution.
-- **Graceful Exit:**  
-  A signal handler ensures the tool shuts down safely (even on CTRL+C), preventing data loss or corruption.
-
-
-
-# REQUIREMENTS:
-- **Python 3.x** installed.
-- Required Python packages:
-  - `colorama`
-  - `fake-useragent`
-  - `requests`
-  - `beautifulsoup4`
-- Standard libraries such as `subprocess`, `multiprocessing`, `signal`, `os`, etc.
-
-
 # RUN OPTIONS:
 
-- ``bash exec.bash``
-- ``python3 exec.py``
+- ``pip install -r requirements.txt --break-system-packages && cd RLA-EXEC``
+- ``python3 exec.py -h``
+
+>> **RLA EXEC ARG VERSION DISPLAY**
+ 
+```
+██████╗░██╗░░░░░░█████╗░  ███████╗██╗░░██╗███████╗░█████╗░
+██╔══██╗██║░░░░░██╔══██╗  ██╔════╝╚██╗██╔╝██╔════╝██╔══██╗
+██████╔╝██║░░░░░███████║  █████╗░░░╚███╔╝░█████╗░░██║░░╚═╝
+██╔══██╗██║░░░░░██╔══██║  ██╔══╝░░░██╔██╗░██╔══╝░░██║░░██╗
+██║░░██║███████╗██║░░██║  ███████╗██╔╝╚██╗███████╗╚█████╔╝
+╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝╚══════╝░╚════╝░
+        >>> SYSTEM READY. AWAITING COMMANDS... 🎉⚡
+
+[RLA-EXEC TOOLKIT]: YOUR #1 OSINT TOOLKIT!  
+    Options:
+   -h, --help     Show this help message and exit.
+    
+[DEEP WEB SEARCH]: USERDEPTH
+     Usage: -depth [query] [number]   Execute deep web search for the provided query and number of results.
+   Example: python3 exec.py -depth hireahacker 15
+    
+[USERNAME OSINT]: SOCIAL OWL
+  Configuration Options:
+  -f FILE, --file FILE   The path to the file containing the list of social media platforms (default: 'social.txt').
+   
+   Options:
+  -owl or --socialowl [username]   Execute a username search for the provided username.
+     Usage: python3 exec.py -owl [username]   or   python3 exec.py --socialowl [username]
+   Example: python3 exec.py -owl johndoe
+
+  -webuser [username] [-prox [proxy_file]] [-n num_results]   Search for a username on multiple search engines.
+     Usage: python3 exec.py -webuser johndoe -n 50
+   Example: python3 exec.py -webuser johndoe -prox proxies.txt -n 30
+
+[WEB SEARCH]: WEBHUNT0R
+   Options:
+  -websearch [query] [-prox [proxy_file]] [-n num_results] [-l language] [-d date_range] [-c country]   
+     Search for a query or username across multiple search engines with additional options.
+    Usage: python3 exec.py -websearch [query] [-prox [proxy_file]] [-n num_results] [-l language] [-d date_range] [-c country]
+  Example: python3 exec.py -websearch "john doe" -n 30
+  Example: python3 exec.py -websearch "john doe" -n 30 -prox
+  Example: python3 exec.py -websearch "john doe" -n 30 -prox proxies.txt
+  Example: python3 exec.py -websearch "john doe" -n 30 -l en -c US
+  Example: python3 exec.py -websearch "donald trump" -n 50 -prox proxies.txt -l fr -d 2020-2025
+
+[DOMAIN OSINT]: DOMAINBOX & WEBDIVER
+   Options:
+   -dbox [username]   Execute domain query enrichment for the provided username.
+   
+   -webdiver [url]    Execute website crawling for the provided URL. Use --output to specify the directory to save results.
+     Usage: python3 exec.py -webdiver [url] --output [directory]
+   Example: python3 exec.py -webdiver https://example.com --output /path/to/save/results
+
+[PROTONMAIL AND PROTONVPN UTILITIES]:
+  Example: python3 exec.py -proton -e johndoe@example.com
+   Options:
+  -e EMAIL, --email EMAIL               Valid Proton email address check
+  -u USERNAME, --username USERNAME      Username to check on Proton
+  -f FIRSTNAME, --firstName FIRSTNAME   First name of the target
+  -l LASTNAME, --lastName LASTNAME      Last name of the target
+  -y YEAROFBIRTH, --yearOfBirth YEAROFBIRTH  Year of birth
+  -p1 PSEUDO1, --pseudo1 PSEUDO1        First pseudo
+  -p2 PSEUDO2, --pseudo2 PSEUDO2        Second pseudo
+  -z ZIPCODE, --zipCode ZIPCODE         Zip code
+  -ip IP, --ip IP                       Valid ProtonVPN IP address check
+   Example: python3 exec.py -proton -e johndoe@example.com -u johndoe -f John -l Doe -y 1985 -p1 hacker -p2 ghost -z 12345 -ip 192.168.1.1
+
+[PROXY UTILITIES]: SPROXYSPONGE
+   Options:
+  -proxysponge    Scrape and validate proxies.
+    Usage: python3 exec.py -proxysponge
+    Example: python3 exec.py -proxysponge
+
+  -proxysponge -p [proxy_file]   Validate proxies from a custom file.
+    Usage: python3 exec.py -proxysponge -p proxies.txt
+    Example: python3 exec.py -proxysponge -p proxies.txt
+
+  -proxysponge -c   Enable proxy validation while scraping.
+    Usage: python3 exec.py -proxysponge -c
+    Example: python3 exec.py -proxysponge -c
+```
+    
+
+- 
