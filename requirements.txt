@@ -1,7 +1,11 @@
+naminter
 colorama
-requests
 bs4
-psutil
+requests
 fake_useragent
-instaloader
-googlesearch
+psutil
+aiohttp
+async-timeout
+ipwhois
+jsonschema
+tqdm

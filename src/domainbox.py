@@ -1,3 +1,4 @@
+import sys
 import requests
 import random
 import time
@@ -106,10 +107,16 @@ def fetch_url(query, domain):
 # Main function
 def main():
     global valid_count, error_count
+    # Load domains from file
     with open("config/domains.txt", "r") as file:
         domains = set(file.read().split(","))  # Use set to remove duplicates
-    with open("config/query.txt", "r") as file:
-        query = file.read().strip()
+
+    # Check if a query argument was provided
+    if len(sys.argv) > 1:
+        query = sys.argv[1]
+    else:
+        print(f"{Fore.RED}Error: No query provided. Usage: python3 {sys.argv[0]} <query>{Fore.RESET}")
+        sys.exit(1)
     
     print(f"{Fore.CYAN}📊 Total unique domains to test: {len(domains)}{Fore.RESET}")
     
