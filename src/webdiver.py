@@ -9,7 +9,7 @@ from aiohttp import ClientSession, ClientError, ClientResponseError, hdrs
 import logging
 from colorama import init, Fore, Style
 from fake_useragent import UserAgent
-from diver.wdc import get_ip_info  
+from src.diver.wdc import get_ip_info   
 import json
 
 
