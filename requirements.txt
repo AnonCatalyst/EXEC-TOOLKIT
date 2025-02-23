@@ -10,3 +10,4 @@ ipwhois
 jsonschema
 tqdm
 diver
+seaborn
