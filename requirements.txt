@@ -11,3 +11,4 @@ jsonschema
 tqdm
 diver
 seaborn
+fpdf
