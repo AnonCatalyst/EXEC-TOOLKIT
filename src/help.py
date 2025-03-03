@@ -78,9 +78,9 @@ def show_help():
   -f FILE, --file FILE   The path to the file containing the list of social media platforms (default: 'social.txt').
    
    {Fore.BLUE}Options{Fore.RED}:{Fore.RESET}
-  -owl or --socialowl [username]   Execute a username search for the provided username.
+  -owl or --socialowl [username] --pdf  Execute a username search for the provided username.
      Usage: python3 exec.py -owl [username]   or   python3 exec.py --socialowl [username]
-   Example: python3 exec.py -owl johndoe
+   Example: python3 exec.py -owl johndoe --pdf
 
   -webuser [username] [-prox [proxy_file]] [-n num_results]   Search for a username on multiple search engines.
      Usage: python3 exec.py -webuser johndoe -n 50
