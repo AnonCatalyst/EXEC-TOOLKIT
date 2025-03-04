@@ -54,6 +54,49 @@
 
 [WEB SEARCH]: WEBHUNT0R
    Options:
-  -websearch [query] [-prox [proxy_file]] [-n num_results] [-l language] [-d date_range] [-c country] 
+  -websearch [query] [-prox [proxy_file]] [-n num_results] [-l language] [-d date_range] [-c country]   
+     Search for a query or username across multiple search engines with additional options.
+    Usage: python3 exec.py -websearch [query] [-prox [proxy_file]] [-n num_results] [-l language] [-d date_range] [-c country]
+  Example: python3 exec.py -websearch "john doe" -n 30
+  Example: python3 exec.py -websearch "john doe" -n 30 -prox
+  Example: python3 exec.py -websearch "john doe" -n 30 -prox proxies.txt
+  Example: python3 exec.py -websearch "john doe" -n 30 -l en -c US
+  Example: python3 exec.py -websearch "donald trump" -n 50 -prox proxies.txt -l fr -d 2020-2025
+
+[DOMAIN OSINT]: DOMAINBOX & WEBDIVER
+   Options:
+   -dbox [username]   Execute domain query enrichment for the provided username.
+   
+   -webdiver [url]    Execute website crawling for the provided URL. Use --output to specify the directory to save results.
+     Usage: python3 exec.py -webdiver [url] --output [directory]
+   Example: python3 exec.py -webdiver https://example.com --output /path/to/save/results
+
+[PROTONMAIL AND PROTONVPN UTILITIES]:
+  Example: python3 exec.py -proton -e johndoe@example.com
+   Options:
+  -e EMAIL, --email EMAIL               Valid Proton email address check
+  -u USERNAME, --username USERNAME      Username to check on Proton
+  -f FIRSTNAME, --firstName FIRSTNAME   First name of the target
+  -l LASTNAME, --lastName LASTNAME      Last name of the target
+  -y YEAROFBIRTH, --yearOfBirth YEAROFBIRTH  Year of birth
+  -p1 PSEUDO1, --pseudo1 PSEUDO1        First pseudo
+  -p2 PSEUDO2, --pseudo2 PSEUDO2        Second pseudo
+  -z ZIPCODE, --zipCode ZIPCODE         Zip code
+  -ip IP, --ip IP                       Valid ProtonVPN IP address check
+   Example: python3 exec.py -proton -e johndoe@example.com -u johndoe -f John -l Doe -y 1985 -p1 hacker -p2 ghost -z 12345 -ip 192.168.1.1
+
+[PROXY UTILITIES]: SPROXYSPONGE
+   Options:
+  -proxysponge    Scrape and validate proxies.
+    Usage: python3 exec.py -proxysponge
+    Example: python3 exec.py -proxysponge
+
+  -proxysponge -p [proxy_file]   Validate proxies from a custom file.
+    Usage: python3 exec.py -proxysponge -p proxies.txt
+    Example: python3 exec.py -proxysponge -p proxies.txt
+
+  -proxysponge -c   Enable proxy validation while scraping.
+    Usage: python3 exec.py -proxysponge -c
+    Example: python3 exec.py -proxysponge -c
 ```
     
