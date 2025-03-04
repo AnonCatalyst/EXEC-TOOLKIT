@@ -70,16 +70,19 @@ class DarkModePDF(FPDF):
 
 def extract_profile_details(soup, username):
     details = {}
+    # Extract HTML bio elements (consolidated into one field)
     bio_elements = soup.find_all(attrs={"class": re.compile("bio|about|profile", re.I)}) + \
                    soup.find_all(attrs={"id": re.compile("bio|about|profile", re.I)})
     if bio_elements:
         html_bio = " | ".join([el.get_text(separator=" ", strip=True) for el in bio_elements])
         details["html_bio"] = html_bio
+    # Extract external links (only include links that start with "https://")
     links = []
     for a in soup.find_all('a', href=True):
         href = a['href']
         if not href.startswith("https://"):
             continue
+        # Case-insensitive check: convert both sides to lowercase
         if username.lower() in a.get_text().lower() or (username.lower() in href.lower()):
             links.append(href)
     if links:
@@ -143,6 +146,7 @@ def check_url(url_info):
             if title.strip() == description.strip():
                 description = ""
             page_text = soup.get_text()
+            # Case-insensitive regex matches
             title_occurrences = len(re.findall(r'\b' + re.escape(username) + r'\b', title, re.IGNORECASE))
             description_occurrences = len(re.findall(r'\b' + re.escape(username) + r'\b', description, re.IGNORECASE))
             text_mentions = len(re.findall(rf'[@#]{re.escape(username)}', page_text, re.IGNORECASE))
@@ -218,7 +222,6 @@ def print_detection_details(detection):
              if len(value_str) > 300:
                  value_str = value_str[:300] + "..."
              print(f"{GREY}    {Fore.CYAN}{key.title()}:{Style.RESET_ALL} {value_str}")
-    # Only mention PDF details if PDF option is enabled
     if PDF_OPTION:
         print(f"{GREY}    Full details are available in the PDF report.")
     print(f"{GREY}{'-'*80}{Style.RESET_ALL}")
@@ -295,7 +298,7 @@ def generate_pdf_report(username, detection_list, error_counts, total_scanned):
     print(f"\nReport saved: {output_path}")
 
 def print_all_detections(detection_list):
-    print("\nFinal list of detections (summary):")
+    print("\n [+] Detections (summary):")
     for detection in detection_list:
         print("-" * 80)
         print(f"URL: {detection['url']}")
@@ -333,18 +336,20 @@ def animated_banner():
 def main():
     global PDF_OPTION
     parser = argparse.ArgumentParser(description="Social Media Account Finder")
-    parser.add_argument("username", help="Username to search")
+    parser.add_argument("username", help="Username to search (case-insensitive)")
     parser.add_argument("-f", "--file", default="config/social.txt", help="Platform list file")
     parser.add_argument("-pdf", "--pdf", action="store_true", help="Include PDF saving")
     args = parser.parse_args()
     PDF_OPTION = args.pdf
+    # Ensure username is stripped; comparisons use username.lower() so case doesn't matter.
+    username = args.username.strip()
     animated_banner()
     platforms = load_platforms(args.file)
     if platforms:
-        print(f"\n{Fore.GREEN}• Starting scan for {Fore.CYAN}{args.username}{Fore.GREEN} across {len(platforms)} platforms •")
-        errors, detections = generate_and_check_urls(args.username, platforms)
+        print(f"\n{Fore.GREEN}• Starting scan for {Fore.CYAN}{username}{Fore.GREEN} across {len(platforms)} platforms •")
+        errors, detections = generate_and_check_urls(username, platforms)
         if args.pdf:
-            generate_pdf_report(args.username, detections, errors, len(platforms))
+            generate_pdf_report(username, detections, errors, len(platforms))
         if detections:
             print(f"\n{Fore.GREEN}✓ Scan complete: {len(detections)} accounts found")
         else:
