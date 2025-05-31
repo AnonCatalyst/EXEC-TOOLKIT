@@ -16,7 +16,7 @@
 
 # RUN OPTIONS:
 
-- ``pip install -r requirements.txt --break-system-packages && cd RLA-EXEC``
+- ``pip install -r requirements.txt --break-system-packages && cd EXEC-TOOLKIT``
 - ``python3 exec.py -h``
 
 ### > **EXEC TOOLKIT ARG VERSION DISPLAY:**
